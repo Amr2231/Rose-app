@@ -1,0 +1,726 @@
+{
+  "deliver": "توصيل الى",
+  "testimonials": {
+    "title": "الشهادات",
+    "sub-title": "كلمات حقيقية من العملاء السعداء",
+    "empty": "لسه مفيش آراء هنا",
+    "empty-subtitle": "لسه البداية — آراء العملاء السعداء هتظهر هنا قريبًا."
+  },
+  "forgot-password": {
+    "step-one-title": "هل نسيت كلمة المرور؟",
+    "step-one-subtitle": "لا تقلق، سنرسل لك تعليمات لمساعدتك في إعادة تعيينها.",
+    "step-two-title": "أدخل رمز التحقق",
+    "step-two-subtitle": "لقد أرسلنا رمزًا مكوّنًا من 6 أرقام إلى {email} <button>تعديل</button>",
+    "step-three-title": "إنشاء كلمة مرور جديدة",
+    "step-three-subtitle": "قم بتعيين كلمة مرور قوية لحماية حسابك."
+  },
+  "register": {
+    "heading": "كُن جزءًا من عائلتنا!",
+    "login": "تسجيل الدخول",
+    "fields": {
+      "firstName": "الاسم الأول",
+      "lastName": "الاسم الأخير",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "gender": {
+        "gender": "الجنس",
+        "male": "ذكر",
+        "female": "أنثى"
+      },
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "createAccount": "إنشاء حساب",
+      "username": "اسم المستخدم"
+    },
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟ ",
+    "validation": {
+      "firstName": {
+        "required": "يرجى إدخال الاسم الأول",
+        "pattern": "يجب أن يحتوي الاسم على حروف فقط",
+        "min": "يجب أن يكون الاسم 3 أحرف على الأقل",
+        "max": "يجب ألا يتجاوز الاسم 15 حرفاً"
+      },
+      "lastName": {
+        "required": "يرجى إدخال اسم العائلة",
+        "pattern": "يجب أن يحتوي الاسم على حروف فقط",
+        "min": "يجب أن يكون الاسم 3 أحرف على الأقل",
+        "max": "يجب ألا يتجاوز الاسم 15 حرفاً"
+      },
+      "email": {
+        "invalid": "يرجى إدخال بريد إلكتروني صحيح"
+      },
+      "phone": {
+        "pattern": "يرجى إدخال رقم هاتف صحيح يبدأ بـ 20+",
+        "length": "يجب أن يتكون رقم الهاتف من 13 رمزاً بما في ذلك 20+"
+      },
+      "gender": {
+        "required": "يرجى اختيار الجنس"
+      },
+      "password": {
+        "required": "يرجى إدخال كلمة المرور",
+        "min": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+        "number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+        "lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+        "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+        "special": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل (#?!@$%^&*-)"
+      },
+      "rePassword": {
+        "required": "يرجى تأكيد كلمة المرور",
+        "mismatch": "كلمتا المرور غير متطابقتين"
+      },
+      "username": {
+        "required": "من فضلك أدخل اسم المستخدم",
+        "min": "اسم المستخدم يجب ألا يقل عن 3 أحرف",
+        "max": "اسم المستخدم يجب ألا يزيد عن 20 حرف",
+        "pattern": "اسم المستخدم يجب أن يحتوي على حروف وأرقام و _ فقط"
+      }
+    },
+    "continue": "متابعة"
+  },
+  "validation": {
+    "firstName": {
+      "required": "يرجى إدخال الاسم الأول",
+      "pattern": "يجب أن يحتوي الاسم على حروف فقط",
+      "min": "يجب أن يكون الاسم 3 أحرف على الأقل",
+      "max": "يجب ألا يتجاوز الاسم 15 حرفاً"
+    },
+    "lastName": {
+      "required": "يرجى إدخال اسم العائلة",
+      "pattern": "يجب أن يحتوي الاسم على حروف فقط",
+      "min": "يجب أن يكون الاسم 3 أحرف على الأقل",
+      "max": "يجب ألا يتجاوز الاسم 15 حرفاً"
+    },
+    "email": {
+      "invalid": "يرجى إدخال بريد إلكتروني صحيح"
+    },
+    "phone": {
+      "pattern": "يرجى إدخال رقم هاتف صحيح يبدأ بـ 20+",
+      "length": "يجب أن يتكون رقم الهاتف من 13 رمزاً بما في ذلك 20+"
+    },
+    "gender": {
+      "required": "يرجى اختيار الجنس"
+    },
+    "password": {
+      "required": "يرجى إدخال كلمة المرور",
+      "min": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+      "number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+      "lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+      "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+      "special": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل (#?!@$%^&*-)"
+    },
+    "rePassword": {
+      "required": "يرجى تأكيد كلمة المرور",
+      "mismatch": "كلمتا المرور غير متطابقتين"
+    }
+  },
+  "email-label": "البريد الالكترونى",
+  "forgot-password-heading": "هل نسيت كلمة المرور؟",
+  "forget-password-text": "لا تقلق سنساعدك فى استعادة كلمة المرور الخاصة بك",
+  "email-placeholder": "ادخل بريدك الالكترونى",
+  "continue": "استمرار",
+  "non-email-error": "من فضلك ادخل بريدك الالكترونى",
+  "email-not-valid": "من فضلك ادخل البريد الالكترونى بشكل صحيح",
+  "required-email": "البريد الالكترونى مطلوب",
+  "dont-have-an-account": "ليس لديك حساب؟ <a>انشاء حساب الان!</a>",
+  "create-new-password-label": "انشاء كلمة سر جديدة",
+  "create-new-password-text": "ضع كلمة سر قوية لحماية ملفك الشخصى",
+  "password-label": "كلمة السر",
+  "confirm-password-label": "تأكيد كلمة السر",
+  "reset-password-btn": "إعادة تعيين كلمة المرور",
+  "need-help": "تحتاج مساعدة؟ <a>اتصل بنا!</a>",
+  "password-is-required": "كلمة المرور مطلوبة",
+  "password-at-least-8-characters": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+  "password-contain-uppercase-letter": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+  "password-contain-lowercase-letter": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+  "password-contain--one-number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+  "passwords-do-not-match": "كلمات المرور غير متطابقة",
+  "products": "منتجات",
+  "product": {
+    "currency": "ج.م",
+    "badge": {
+      "new": "جديد",
+      "hot": "الأكثر مبيعًا",
+      "out-of-stock": "نفدت الكمية"
+    },
+    "error-loading-product-details": "حدث خطأ أثناء تحميل تفاصيل المنتج"
+  },
+  "best-selling": {
+    "title": "الأكثر مبيعًا",
+    "subtitle": {
+      "checkOut": "اكتشف",
+      "restBeforeBuying": "ما يشتريه الجميع ",
+      "buying": " الشراء ",
+      "rest-after-buying": "حاليًا"
+    },
+    "description": "غير متأكد مما تختار؟ ابدأ بأكثر منتجاتنا مبيعًا، فهي الهدايا التي يعود عملاؤنا لشرائها مرارًا. سواء كنت تحتفل بعيد ميلاد، ذكرى سنوية، أو زفاف، فإن اختياراتنا الأفضل مضمونة لترك انطباع لا يُنسى.",
+    "button": "استكشف الهدايا"
+  },
+  "most-popular": {
+    "title": "الأكثر شيوعًا",
+    "empty": "لا توجد منتجات لهذه المناسبة",
+    "empty-subtitle": "جرب مناسبة أخرى أو تحقق قريبًا من الجديد.",
+    "view-more": "عرض المزيد"
+  },
+  "about": {
+    "title": "من نحن",
+    "heading": {
+      "beforeFinest": "نقدم لكم",
+      "finest": "أفخم",
+      "beforeSpecial": "صناديق الهدايا لـ",
+      "special": "لحظاتكم",
+      "afterSpecial": "المميزة"
+    },
+    "description": "اجعل كل لحظة لا تُنسى مع صناديق الهدايا الفاخرة لدينا. تم اختيار كل صندوق بعناية وتغليفه بأناقة ليحتوي على منتجات مميزة تترك انطباعًا رائعًا. سواء كان عيد ميلاد أو زفاف أو حتى كلمة شكر بسيطة، هدايانا مصممة لتصنع فرقًا حقيقيًا.",
+    "button": "اكتشف",
+    "features": {
+      "f1": "أسعار تنافسية وتسوق سهل",
+      "f2": "جودة عالية وتغليف أنيق",
+      "f3": "مثالية لكل المناسبات",
+      "f4": "توصيل سريع وموثوق"
+    }
+  },
+  "companies": {
+    "title": "موثوق به من أكثر من",
+    "count": "+4.5 ألف",
+    "suffix": "شركة"
+  },
+  "gallery": {
+    "label": "المعرض",
+    "title": "اكتشف معرضنا الرائع"
+  },
+  "login": {
+    "heading": "مرحبًا بعودتك!",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "email-placeholder": "user@example.com",
+    "password-placeholder": "********",
+    "forgot-password": "هل نسيت كلمة المرور؟",
+    "remember-me": "تذكرني",
+    "login-btn": "تسجيل الدخول",
+    "generic-error": "حدث خطأ ما",
+    "password-pattern-error": "يجب أن تكون كلمة المرور 8 أحرف على الأقل وتحتوي على حرف كبير، حرف صغير، رقم و رمز خاص.",
+    "noAccount": "ليس لديك حساب بعد؟",
+    "createAccount": "أنشئ حسابًا الآن",
+    "schema": {
+      "email-required": "البريد الإلكتروني مطلوب",
+      "invalid-email": "الرجاء إدخال بريد إلكتروني صالح",
+      "password-required": "كلمة المرور مطلوبة",
+      "username-required": "اسم المستخدم مطلوب",
+      "username-min": "اسم المستخدم يجب ألا يقل عن 3 أحرف"
+    },
+    "change-password": "تغيير كلمة المرور",
+    "username": "اسم المستخدم",
+    "username-placeholder": "johndoe"
+  },
+  "add-to-wishlist": "إضافة إلى المفضلة",
+  "remove-from-wishlist": "إزالة من المفضلة",
+  "login-popup": {
+    "loginTab": "تسجيل الدخول",
+    "registerTab": "إنشاء حساب"
+  },
+  "delete-alert": {
+    "button-text": "حذف",
+    "delete-alert-description": "هل أنت متأكد من رغبتك في حذف هذا؟",
+    "delet-alert-cancel": " إلغاء",
+    "delet-alert-Confirm": "تأكيد",
+    "delet-alert-loading": "جارٍ الحذف..."
+  },
+  "items": {
+    "product": "منتج",
+    "category": "تصنيف",
+    "item": "عنصر"
+  },
+  "in-stock": "متبقي في المخزون",
+  "out-of-stock": "غير متوفر حالياً",
+  "cart": {
+    "title": "السلة",
+    "empty": "مسح السلة",
+    "empty-cart": "سلة التسوق الخاصة بك فارغة، هل ترغب في تجربة التسوق؟ ",
+    "products": "المنتجات",
+    "continue-shopping": "متابعة التسوق",
+    "products-you-may-like": "منتجات قد تعجبك",
+    "remove-product": "إزالة المنتج",
+    "rating": "التقييم",
+    "ratings": "التقييمات",
+    "currency": "ج.م",
+    "loading": "جاري التحميل ...",
+    "out-of-stock-toast": "عذرًا، هذا المنتج غير متوفر حاليًا",
+    "add-to-cart": "أضف إلى السلة"
+  },
+  "category-filter": {
+    "title": "الفئة",
+    "reset": "إعادة",
+    "loading-more": "... تحميل المزيد"
+  },
+  "rating-filter": {
+    "title": "التقييم",
+    "reset": "إعادة"
+  },
+  "reset-all": "مسح جميع الفلاتر",
+  "addressModal": {
+    "add-title": "إضافة عنوان",
+    "edit-title": "تعديل العنوان",
+    "next": "التالي",
+    "select-location": "اعثر على موقعك",
+    "saving": "جاري الحفظ...",
+    "add-btn": "إضافة العنوان",
+    "save-btn": "حفظ التعديلات"
+  },
+  "deliveryDialog": {
+    "title": "عناويني",
+    "add-new": "إضافة عنوان جديد",
+    "loading": "جاري تحميل العناوين...",
+    "empty": "لا توجد عناوين محفوظة بعد",
+    "add": "إضافة عنوان",
+    "labels": {
+      "home": "المنزل",
+      "work": "العمل",
+      "family": "العائلة"
+    }
+  },
+  "AddressForm": {
+    "title": "أدخل تفاصيل العنوان",
+    "addressTitleLabel": "اسم العنوان",
+    "addressTitlePlaceholder": "مثال: المنزل، العمل",
+    "cityLabel": "المدينة",
+    "cityPlaceholder": "أدخل اسم المدينة",
+    "streetLabel": "العنوان",
+    "streetPlaceholder": "أدخل عنوانك بالكامل",
+    "phoneLabel": "رقم الهاتف",
+    "phonePlaceholder": "أدخل رقم الهاتف"
+  },
+  "DeleteAddress": {
+    "title": "هل أنت متأكد أنك تريد حذف هذا العنوان؟",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد"
+  },
+  "MapPicker": {
+    "findLocation": "تحديد موقعي",
+    "notSupported": "المتصفح لا يدعم تحديد الموقع.",
+    "locationError": "تعذر الحصول على موقعك. حاول مرة أخرى."
+  },
+  "shipping-address": {
+    "title": "عنوان الشحن",
+    "add-new": "إضافة عنوان جديد",
+    "or": "أو",
+    "next": "التالي",
+    "no-addresses": "لا توجد عناوين محفوظة بعد. أضف عنوانًا للمتابعة.",
+    "select-address-first": "من فضلك اختر عنوانًا للمتابعة"
+  },
+  "payment-method": {
+    "title": "طريقة الدفع",
+    "back": "العودة",
+    "cash": "الدفع عند الاستلام",
+    "cash-description": "سيتم دفع المبلغ نقدًا عند استلام الطلب.",
+    "card": "بطاقة ائتمان",
+    "card-description": "سيتم إعادة توجيهك بشكل آمن إلى Stripe لإكمال عملية الدفع.",
+    "checkout": "الدفع",
+    "processing": "جاري التنفيذ..."
+  },
+  "summary": {
+    "title": "ملخص الطلب",
+    "placeholder": "رمز الكوبون",
+    "apply": "تطبيق الكوبون",
+    "box": "لا توجد كوبونات مطبقة",
+    "subtotal": "المجموع الفرعي",
+    "total": "الإجمالي",
+    "checkout": "إتمام الطلب",
+    "currency": "جنيه"
+  },
+  "error": "خطأ",
+  "old-password-label": "كلمة المرور القديمة",
+  "new-password-label": "كلمة المرور الجديدة",
+  "confirm-new-password-label": "تأكيد كلمة المرور القديمة",
+  "change-password": "تغيير كلمة المرور",
+  "delete-my-account": "حذف الحساب الخاص بى",
+  "ask-for-delete-account": "هل أنت متأكد أنك تريد حذف حسابك؟",
+  "action-cannot-undone": "هذا الإجراء دائم ولا يمكن التراجع عنه.",
+  "not-doing": "لا، لا تفعل ذلك",
+  "yes-delete": "نعم احذف",
+  "my-account": "حسابي",
+  "update-profile": "تحديث الملف الشخصي",
+  "logout": "تسجيل الخروج",
+  "gender": "النوع",
+  "male": "ذكر",
+  "upload-photo": "تحميل الصورة",
+  "photo-extentions": "يمكنكك تحميل صور من نوع (.jpg, .png, or .gif) واقصى حجم هو (5 ميجا بايت)",
+  "save-changes": "حفظ التغييرات",
+  "your-account-deleted": "تم حذف حسابك",
+  "your-profile-updated": "تم تحديث الملف الخاص بك بنجاح",
+  "account-delete-failed": "فشل حذف الحساب، من فضلك حاول مرة أخرى",
+  "profile-update-failed": "فشل تحديث الملف الشخصي، من فضلك حاول مرة أخرى",
+  "low-stock": {
+    "title": "منتجات على وشك النفاد",
+    "unit": "قطعة"
+  },
+  "top-selling": {
+    "title": "الأكثر مبيعاً",
+    "unit": "مبيعات"
+  },
+  "orders": {
+    "title": "الطلبات",
+    "paid": "مدفوع",
+    "order-number": "طلب رقم",
+    "created-at": "تم الإنشاء في",
+    "total-price": "السعر الإجمالي",
+    "status": "الحالة",
+    "order-items": "عناصر الطلب",
+    "show-all": "عرض الكل",
+    "show-less": "عرض أقل",
+    "no-orders-found": "لا توجد طلبات بعد",
+    "no-orders-subtitle": "لسه معملتش أي طلب — أول ما تطلب هيظهر هنا.",
+    "currency": "ج.م",
+    "rating": "التقييم",
+    "ratings-count": "تقييم",
+    "payment": {
+      "method": "طريقة الدفع",
+      "cash": "نقداً",
+      "credit_card": "بطاقة ائتمان"
+    },
+    "delivery": {
+      "status": "حالة التوصيل",
+      "pending": "قيد الانتظار",
+      "cancelled": "تم الإلغاء",
+      "delivered": "تم التوصيل"
+    },
+    "order-status": {
+      "pending": "قيد التنفيذ",
+      "inProgress": "جاري التنفيذ",
+      "done": "مكتمل",
+      "cancelled": "ملغي"
+    }
+  },
+  "wishlist": {
+    "title": "المفضلة",
+    "empty": "قائمة المفضلة فاضية",
+    "empty-subtitle": "احفظ المنتجات اللي عجبتك بالدوس على أيقونة القلب — هتظهر هنا.",
+    "browse-products": "تصفح المنتجات"
+  },
+  "dashboard": {
+    "sidebar": {
+      "preview-website": "معاينة الموقع",
+      "account": "الحساب",
+      "logout": "تسجيل الخروج",
+      "overview": "نظرة عامة",
+      "categories": "التصنيفات",
+      "occasions": "المناسبات",
+      "products": "المنتجات"
+    },
+    "products": {
+      "title": "كل المنتجات",
+      "add-product": "إضافة منتج جديد",
+      "search-placeholder": "بحث...",
+      "table": {
+        "name": "الاسم",
+        "price": "السعر",
+        "stock": "المخزون",
+        "sales": "المبيعات",
+        "ratings": "التقييمات"
+      },
+      "actions": {
+        "edit": "تعديل",
+        "delete": "حذف"
+      },
+      "states": {
+        "loading-error": "فشل تحميل المنتجات.",
+        "empty": "لا توجد منتجات."
+      },
+      "delete-modal": {
+        "title": "هل أنت متأكد أنك تريد حذف هذا المنتج؟",
+        "cancel": "إلغاء",
+        "confirm": "تأكيد"
+      }
+    },
+    "categories": {
+      "all": "كل الفئات",
+      "add": "إضافة فئة",
+      "searchPlaceholder": "ابحث عن الفئات...",
+      "noCategories": "لا توجد فئات.",
+      "name": "الاسم",
+      "products": "المنتجات",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "nameLabel": "اسم الفئة",
+      "namePlaceholder": "أدخل اسم الفئة",
+      "imageLabel": "صورة الفئة",
+      "submitButton": "إضافة فئة",
+      "update": "تحديث",
+      "viewImage": "عرض الصورة",
+      "updateCategory": "تحديث الفئة"
+    },
+    "menu": "قائمة لوحة التحكم",
+    "ordersStatus": {
+      "title": "حالة الطلبات",
+      "completed": "مكتمل",
+      "inProgress": "قيد التنفيذ",
+      "canceled": "ملغي",
+      "pending": "قيد الانتظار"
+    }
+  },
+  "reviews": {
+    "title": "تقييمات المنتج",
+    "generalRating": "التقييم العام",
+    "ratings": "{count} تقييم",
+    "noReviews": "لا توجد تقييمات بعد",
+    "noReviewsSubtitle": "كوني أول واحدة تشارك رأيها في المنتج ده.",
+    "form": {
+      "yourRating": "تقييمك:",
+      "titleLabel": "العنوان",
+      "titlePlaceholder": "أدخل عنوان التقييم",
+      "reviewLabel": "التقييم",
+      "reviewPlaceholder": "ما رأيك في هذا المنتج؟",
+      "submit": "إضافة تقييم",
+      "submitting": "جارٍ الإرسال...",
+      "success": "تم إرسال تقييمك بنجاح!",
+      "validation": {
+        "titleMin": "يجب أن يكون العنوان 3 أحرف على الأقل",
+        "titleMax": "يجب ألا يتجاوز العنوان 100 حرف",
+        "commentMin": "يجب أن يكون التقييم 10 أحرف على الأقل",
+        "commentMax": "يجب ألا يتجاوز التقييم 500 حرف",
+        "ratingRequired": "يرجى اختيار تقييم"
+      }
+    }
+  },
+  "relatedProducts": {
+    "title": "منتجات مشابهة"
+  },
+  "add-new-occasion": "إضافة مناسبة جديدة",
+  "add-occasion": "إضافة مناسبة",
+  "all-occasions": "كل المناسبات",
+  "delete": "حذف",
+  "failed-to-load-occasions": "فشل تحميل المناسبات",
+  "image": "صورة",
+  "last-week": "الأسبوع الماضي",
+  "monthly": "شهريًا",
+  "name": "الاسم",
+  "name-lable": "الاسم",
+  "no-revenue-data-available": "لا تتوفر بيانات إيرادات",
+  "occasion-added": "تمت إضافة المناسبة بنجاح",
+  "occasion-deleted": "تم حذف المناسبة بنجاح",
+  "occasion-name-placeholder": "أدخل اسم المناسبة",
+  "occasion-updated": "تم تحديث المناسبة بنجاح",
+  "revenue": "الإيرادات",
+  "update-occasion": "تحديث المناسبة",
+  "upload-file": "رفع ملف",
+  "ocaasion-name-is-required": "اسم المناسبة مطلوب",
+  "occasion-name-min": "يجب أن يكون اسم المناسبة 3 أحرف على الأقل",
+  "occasion-filter": {
+    "title": "المناسبة",
+    "reset": "إعادة تعيين",
+    "error": "فشل تحميل المناسبات"
+  },
+  "price-filter": {
+    "title": "السعر",
+    "reset": "إعادة تعيين",
+    "from": "من",
+    "to": "إلى"
+  },
+  "products-page": {
+    "empty": "لا توجد منتجات",
+    "empty-subtitle": "جرّبي تغيير الفلاتر أو كلمة البحث للعثور على اللي بتدوري عليه.",
+    "loading": "جارٍ تحميل المنتجات..."
+  },
+  "error-handler": {
+    "title": "عذرًا، حدث خطأ ما!",
+    "description": "حدث خطأ غير متوقع، يرجى تحديث الصفحة أو المحاولة مرة أخرى بعد قليل."
+  },
+  "not-authorized": {
+    "title": "غير مصرح لك بالوصول إلى هذه الصفحة.",
+    "description": "إذا كنت تعتقد أن هذا خطأ، يرجى التواصل مع الدعم.",
+    "return-home": "العودة إلى الصفحة الرئيسية"
+  },
+  "verify": {
+    "title": "أدخل رمز التحقق",
+    "send-to": "لقد أرسلنا رمزًا مكونًا من 6 أرقام إلى",
+    "edit-email": "تعديل",
+    "resend-after": "إعادة الإرسال بعد",
+    "send-code": "إعادة إرسال الرمز",
+    "verify-otp": "تحقق من الرمز",
+    "help": "لم تستلم الرمز؟ ",
+    "contact": "تواصل مع الدعم",
+    "otp-validation": "يرجى إدخال رمز صحيح مكون من 6 أرقام",
+    "success-toast": "تم التحقق من الرمز بنجاح",
+    "error-toast": "فشل التحقق من الرمز، يرجى المحاولة مرة أخرى"
+  },
+  "create-product": {
+    "add-new-product": "إضافة منتج جديد",
+    "add-product": "إضافة منتج",
+    "title": "العنوان",
+    "title-placeholder": "أدخل عنوان المنتج",
+    "description": "الوصف",
+    "description-placeholder": "أدخل وصف المنتج",
+    "price": "السعر",
+    "discount": "الخصم",
+    "price-after-discount": "السعر بعد الخصم",
+    "quantity": "الكمية",
+    "product-cover": "صورة الغلاف",
+    "product-gallery": "معرض الصور",
+    "category": "الفئة",
+    "category-placeholder": "اختر فئة",
+    "occasion": "المناسبة",
+    "occasion-placeholder": "اختر مناسبة",
+    "on-success-title": "تم إنشاء المنتج",
+    "on-success-description": "تم إنشاء المنتج بنجاح.",
+    "on-error-title": "فشل الإنشاء",
+    "on-error-description": "حدث خطأ أثناء إنشاء المنتج.",
+    "title-required": "العنوان مطلوب",
+    "description-required": "الوصف مطلوب",
+    "price-required": "السعر مطلوب",
+    "quantity-required": "الكمية مطلوبة",
+    "product-cover-required": "صورة الغلاف مطلوبة",
+    "product-gallery-required": "صور المعرض مطلوبة",
+    "select-category": "يرجى اختيار فئة",
+    "select-occasion": "يرجى اختيار مناسبة"
+  },
+  "update-product": {
+    "title": "العنوان",
+    "title-placeholder": "أدخل عنوان المنتج",
+    "description": "الوصف",
+    "description-placeholder": "أدخل وصف المنتج",
+    "price": "السعر",
+    "discount": "الخصم",
+    "price-after-discount": "السعر بعد الخصم",
+    "quantity": "الكمية",
+    "category": "الفئة",
+    "category-placeholder": "اختر فئة",
+    "occasion": "المناسبة",
+    "occasion-placeholder": "اختر مناسبة",
+    "update-product": "تحديث المنتج",
+    "update-btn": "تحديث",
+    "on-success-title": "تم تحديث المنتج",
+    "on-success-description": "تم تحديث المنتج بنجاح.",
+    "on-error-title": "فشل التحديث",
+    "on-error-description": "حدث خطأ أثناء تحديث المنتج.",
+    "title-required": "العنوان مطلوب",
+    "description-required": "الوصف مطلوب",
+    "price-required": "السعر مطلوب",
+    "quantity-required": "الكمية مطلوبة",
+    "select-category": "يرجى اختيار فئة",
+    "select-occasion": "يرجى اختيار مناسبة"
+  },
+  "navbar": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "orders": "الطلبات",
+    "about": "من نحن"
+  },
+  "header": {
+    "profile": "حسابي",
+    "login": "تسجيل الدخول",
+    "dashboard": "لوحة التحكم"
+  },
+  "footer": {
+    "appName": "روز للتجارة الإلكترونية",
+    "rights": "جميع الحقوق محفوظة | 2025",
+    "discoverTitle": "اكتشف موقعنا",
+    "links": {
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "categories": "الفئات",
+      "occasions": "المناسبات",
+      "contact": "تواصل معنا",
+      "about": "من نحن",
+      "terms": "الشروط والأحكام",
+      "privacy": "سياسة الخصوصية",
+      "faqs": "الأسئلة الشائعة"
+    },
+    "discountHeading": "احصل على",
+    "discountPercent": "20%",
+    "discountSuffix": "خصم كوبون",
+    "newsletterSubtitle": "عن طريق الاشتراك في نشرتنا البريدية",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "subscribe": "اشتراك",
+    "invalidEmail": "من فضلك أدخل بريد إلكتروني صحيح",
+    "subscribeSuccess": "شكراً لاشتراكك!"
+  },
+  "home": {
+    "carousel": {
+      "startingFrom": "يبدأ من 10.99 جنيه",
+      "specialGiftsHeading": "هدايا مميزة لمن تحب",
+      "shopNow": "تسوق الآن",
+      "sayItWithFlowers": "عبّر عن مشاعرك بالورد",
+      "elegantGifts": "هدايا أنيقة لكل مناسبة خاصة.",
+      "imBuying": "أنا هشتري!"
+    },
+    "secondSection": {
+      "wedding": {
+        "title": "احتفلي بها للأبد بهدية لن تنساها أبدًا",
+        "badge": "زفاف"
+      },
+      "engagement": {
+        "title": "احتفلوا ببداية رحلة جميلة معًا",
+        "badge": "خطوبة"
+      },
+      "anniversary": {
+        "title": "احتفلوا بكل عام من الحب بمفاجأة مميزة",
+        "badge": "ذكرى سنوية"
+      }
+    },
+    "specifications": {
+      "freeDelivery": {
+        "title": "توصيل مجاني",
+        "sub": "للطلبات أكثر من 120 جنيه"
+      },
+      "getRefund": {
+        "title": "استرداد الأموال",
+        "sub": "استرداد خلال 30 يومًا"
+      },
+      "safePayment": {
+        "title": "دفع آمن",
+        "sub": "دفع آمن 100%"
+      },
+      "support": {
+        "title": "دعم على مدار الساعة",
+        "sub": "تواصل معنا في أي وقت"
+      }
+    },
+    "search": {
+      "placeholder": "ابحث عن هدية...",
+      "resultsFor": "نتائج البحث عن \"{keyword}\"",
+      "recommendedForYou": "مقترح لك:",
+      "noRecommendations": "لا توجد توصيات متاحة",
+      "noMoreProducts": "لا يوجد المزيد من المنتجات لعرضها",
+      "noProductsFound": "لا توجد منتجات.",
+      "startSearching": "ابدأ البحث عن الهدايا!",
+      "rating": "التقييم"
+    }
+  },
+  "about-page": {
+    "heroLabel": "قصتنا",
+    "heroHeading": "أسسنا روز لأن تقديم الهدايا بقى تقليدي وممل",
+    "heroParagraph1": "كتير من الهدايا أونلاين بتكون نفس القوالب بس بورق تغليف مختلف. روز بدأت كـ كشك صغير بيرتب الورد لجيرانه اللي كانوا عايزين حاجة فعلاً متقنة — وكبرت من هنا. لسه بنعمل نفس الحاجة، بس دلوقتي لعدد أكبر من الناس: بنجهز هدايا وتنسيقات إحنا نفسنا هنبقى مبسوطين لو استلمناها.",
+    "heroParagraph2": "من غير مخازن مليانة باقات متطابقة. كل طلب لسه بيعدي على حد بيتأكد منه قبل ما يخرج من الباب.",
+    "valuesLabel": "اللي يهمنا",
+    "valuesHeading": "الحاجات اللي مش بنتنازل عنها",
+    "value1": {
+      "title": "بايدينا، مش إنتاج مصنعي",
+      "text": "كل تنسيقة بتتعمل بإيدين، غصن غصن — مش طالعة من خط إنتاج."
+    },
+    "value2": {
+      "title": "لكل مناسبة طابعها",
+      "text": "أعياد ميلاد، اعتذارات، أعياد زواج، أو من غير أي سبب — بنجهز كل طلب حسب المناسبة بتاعته."
+    },
+    "value3": {
+      "title": "التفاصيل الصغيرة مقصودة",
+      "text": "التغليف، الكارت، التوقيت — التفاصيل البسيطة دي هي اللي بناخد فيها وقتنا."
+    }
+  },
+  "toast": {
+    "success": "نجاح",
+    "error": "خطأ"
+  },
+  "not-found": {
+    "title": "الصفحة غير موجودة",
+    "description": "الصفحة اللي بتدور عليها مش موجودة."
+  },
+  "checkout": {
+    "orderPlaced": "تم تنفيذ طلبك بنجاح",
+    "orderFailed": "فشلت عملية الدفع، برجاء المحاولة مرة أخرى"
+  },
+  "check-your-email-title": "تحقق من بريدك الإلكتروني",
+  "check-your-email-text": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى {email}. اضغط على الرابط لتعيين كلمة مرور جديدة.",
+  "use-a-different-email": "استخدام بريد إلكتروني آخر",
+  "invalid-reset-link-title": "الرابط غير صالح أو منتهي الصلاحية",
+  "invalid-reset-link-text": "رابط إعادة تعيين كلمة المرور هذا غير صالح أو منتهي الصلاحية. من فضلك اطلب رابطًا جديدًا.",
+  "request-new-link": "طلب رابط جديد"
+}
