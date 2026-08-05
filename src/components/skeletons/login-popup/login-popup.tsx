@@ -14,7 +14,7 @@ export default function LoginPopup() {
   const router = useRouter();
 
   return (
-    <Card className="w-full max-w-[28.125rem] ">
+    <Card className="w-[28.125rem] max-w-[90vw] ">
       <Tabs defaultValue="login" className="w-full">
         <CardHeader className="p-0  ">
           <TabsList className="w-full grid grid-cols-2 ">
