@@ -20,8 +20,16 @@ export async function getProductDetails(
 
   const data = await res.json();
 
-  // The new backend's product object uses different field names (id vs
-  // _id, cover vs imgCover, etc.) - normalizeProduct maps it onto the
-  // shape the product detail UI expects.
-  return { message: data.message, product: normalizeProduct(data.payload) };
+  // Confirmed against a live response: GET /api/products/{id} nests the
+  // product one level deeper than the list endpoint - payload.product, not
+  // payload itself. Reading data.payload directly meant every field
+  // (price/stock/cover/...) was undefined, which is why the detail page
+  // was showing 0 EGP / out of stock / no image for every product.
+  //
+  // normalizeProduct then maps the new backend's field names (id vs _id,
+  // cover vs imgCover, etc.) onto the shape the product detail UI expects.
+  return {
+    message: data.message,
+    product: normalizeProduct(data.payload?.product ?? data.payload),
+  };
 }
