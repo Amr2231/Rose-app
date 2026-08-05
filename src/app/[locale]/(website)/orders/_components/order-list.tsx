@@ -4,7 +4,16 @@ import { getOrders } from "@/lib/services/orders.service";
 
 export default async function OrderList() {
   // States
-  const data = await getOrders();
+  let data;
+  try {
+    data = await getOrders();
+  } catch (error) {
+    // e.g. Admin accounts hitting the customer-only /api/orders endpoint -
+    // don't crash the whole page (which was bubbling up to the global
+    // error boundary), just show the empty state instead.
+    console.error("Failed to load orders:", error);
+    return <EmptyOrders />;
+  }
 
   if (!data?.orders?.length) return <EmptyOrders />;
   return (
