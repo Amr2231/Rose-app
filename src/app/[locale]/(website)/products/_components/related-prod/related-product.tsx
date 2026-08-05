@@ -1,28 +1,23 @@
-import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { RelatedProductsCarousel } from "./related-products-carousel";
-import { Skeleton } from "@/components/ui/skeleton";
+import { getRelatedProducts } from "@/lib/services/related-products.service";
 
 // Type
 type RelatedProductsSectionProps = {
   productId: string;
 };
 
-// Loading skeleton
-function CarouselSkeleton() {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {[...Array(3)].map((_, i) => (
-        <Skeleton key={i} className="h-72 w-full rounded-md" />
-      ))}
-    </div>
-  );
-}
-
 // Component
 export default async function RelatedProductsSection({
   productId,
 }: RelatedProductsSectionProps) {
+  const { similarProducts } = await getRelatedProducts(productId);
+
+  // Nothing to show (no other products in the same category) - hide the
+  // whole section instead of leaving a bare "Related Products" heading
+  // with an empty carousel underneath it.
+  if (!similarProducts.length) return null;
+
   const t = await getTranslations("relatedProducts");
 
   return (
@@ -35,10 +30,7 @@ export default async function RelatedProductsSection({
         <div className="h-0.5 w-[3%] bg-softPink-600 mt-1" />
       </div>
 
-      {/* Carousel with Suspense */}
-      <Suspense fallback={<CarouselSkeleton />}>
-        <RelatedProductsCarousel productId={productId} />
-      </Suspense>
+      <RelatedProductsCarousel products={similarProducts} />
     </section>
   );
 }

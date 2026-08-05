@@ -6,24 +6,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import ProductCard from "@/components/shared/product-card";
-import { getRelatedProducts } from "@/lib/services/related-products.service";
+import { Product } from "@/lib/types/product";
 
 // Type
 type Props = {
-  productId: string;
+  products: Product[];
 };
 
 // Component
-export async function RelatedProductsCarousel({ productId }: Props) {
-  const data = await getRelatedProducts(productId);
-
-  if (!data?.similarProducts?.length) return null;
-
+export function RelatedProductsCarousel({ products }: Props) {
   return (
     <Carousel opts={{ align: "start" }} className="w-full h-full">
       {/* Items */}
       <CarouselContent className="ml-0 h-full flex">
-        {data.similarProducts.map((product: any) => {
+        {products.map((product) => {
           // The new backend returns cover/image as a full absolute URL
           // already - no base-URL prefix needed (see normalize-product.ts).
           const imageUrl = product.imgCover;

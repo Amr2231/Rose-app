@@ -28,27 +28,29 @@ export async function getProducts(params: Record<string, any> = {}) {
 
   const data = await res.json();
 
-  // New backend wraps everything in { status, code, payload }. The exact
-  // shape of the paginated payload isn't documented beyond "payload": "string"
-  // in the Swagger excerpt, so this normalizes a few likely shapes down to
-  // the { products, metadata } contract every caller in this app expects.
-  // Worth confirming the real shape with the backend team.
+  // Confirmed against a live response: GET /api/products wraps the list as
+  // payload.data (an array) alongside payload.metadata: { page, limit,
+  // total, totalPages }. Still normalizing a couple of alternate shapes
+  // defensively since other list endpoints in this app use different
+  // wrapper keys (items/products).
   const rawPayload = data?.payload ?? data;
   const products = Array.isArray(rawPayload)
     ? rawPayload
-    : Array.isArray(rawPayload?.products)
-      ? rawPayload.products
-      : Array.isArray(rawPayload?.items)
-        ? rawPayload.items
-        : Array.isArray(rawPayload?.data)
-          ? rawPayload.data
+    : Array.isArray(rawPayload?.data)
+      ? rawPayload.data
+      : Array.isArray(rawPayload?.products)
+        ? rawPayload.products
+        : Array.isArray(rawPayload?.items)
+          ? rawPayload.items
           : [];
 
-  const metadata = rawPayload?.metadata ?? {
-    currentPage: rawPayload?.page ?? 1,
-    limit: rawPayload?.limit ?? products.length,
-    totalPages: rawPayload?.totalPages ?? 1,
-    totalItems: rawPayload?.total ?? products.length,
+  const rawMetadata = rawPayload?.metadata ?? rawPayload;
+  const metadata = {
+    currentPage: rawMetadata?.currentPage ?? rawMetadata?.page ?? 1,
+    limit: rawMetadata?.limit ?? products.length,
+    totalPages: rawMetadata?.totalPages ?? 1,
+    totalItems:
+      rawMetadata?.totalItems ?? rawMetadata?.total ?? products.length,
   };
 
   // Map the new backend's field names (id/cover/gallery/stock/...) onto
