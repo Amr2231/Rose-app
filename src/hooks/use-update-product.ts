@@ -1,6 +1,6 @@
 import { updateProduct } from "@/lib/actions/update-product.actions";
 import { ProductUpdateFields } from "@/lib/types/product";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "./use-toast";
 import { useTranslations } from "next-intl";
 
@@ -11,6 +11,8 @@ export default function useUpdateProduct() {
   const t = useTranslations("update-product");
   // Toaser
   const { toast } = useToast();
+  // Queries
+  const queryClient = useQueryClient();
 
   const { mutate, error, isPending } = useMutation({
     mutationFn: async (fields: ProductMutationInput) => {
@@ -25,7 +27,7 @@ export default function useUpdateProduct() {
       if (values.discount) {
         formData.append(
           "priceAfterDiscount",
-          String(values.price - values.discount)
+          String(values.price - values.discount),
         );
       }
 
@@ -39,6 +41,10 @@ export default function useUpdateProduct() {
     },
     // if success
     onSuccess: () => {
+      // Invalidate every cached dashboard-products list (all pages/search
+      // terms) so the table shows the updated data when the user navigates
+      // back to it.
+      queryClient.invalidateQueries({ queryKey: ["dashboard-products"] });
       toast({
         title: t("on-success-title"),
         description: t("on-success-description"),

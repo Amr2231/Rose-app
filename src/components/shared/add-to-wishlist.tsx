@@ -64,7 +64,7 @@ export default function AddToWishlist({
     }
   }, [status]);
 
-  const active = mounted && Boolean(isInWishlist || data);
+  const active = mounted && Boolean(isInWishlist || data?.inWishlist);
 
   if (variant === "inline") {
     return (
@@ -73,15 +73,13 @@ export default function AddToWishlist({
         onClick={handleToggle}
         disabled={isLoading || !productId}
         aria-pressed={active}
-        aria-label={
-          active ? t("remove-from-wishlist") : t("add-to-wishlist")
-        }
+        aria-label={active ? t("remove-from-wishlist") : t("add-to-wishlist")}
         className={cn(
           "shrink-0 p-3 rounded-lg transition-colors disabled:opacity-60",
           active
             ? "bg-maroon-50 text-maroon-600 dark:bg-zinc-700 dark:text-softPink-300"
             : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-600",
-          className
+          className,
         )}
       >
         {active ? (
@@ -103,7 +101,7 @@ export default function AddToWishlist({
           "rounded-full h-8 flex rtl:flex-row-reverse items-center justify-center absolute top-2 left-2 px-2",
           active
             ? "bg-black dark:bg-zinc-800 text-white"
-            : "bg-white dark:bg-zinc-800 text-maroon-600 dark:text-softPink-300"
+            : "bg-white dark:bg-zinc-800 text-maroon-600 dark:text-softPink-300",
         )}
       >
         {active ? (

@@ -9,18 +9,10 @@ export async function GET(req: NextRequest) {
     const limit = Number(req.nextUrl.searchParams.get("limit") ?? "10") || 10;
     const search = req.nextUrl.searchParams.get("search")?.trim() ?? "";
 
-    // The new backend's GET /api/categories has no documented "search"
-    // param and is known to reject unrecognized/empty query params (see the
-    // same note in products.service.ts) - forwarding `search=` blindly was
-    // causing every request to fail with 400. Only forward params the
-    // backend actually understands, and when the user is searching, fetch
-    // a larger page and filter/paginate it here instead.
     const backendParams = new URLSearchParams();
     if (search) {
-      // Pull a big-enough page to search across, since we can't ask the
-      // backend to filter for us.
       backendParams.set("page", "1");
-      backendParams.set("limit", "1000");
+      backendParams.set("limit", "100");
     } else {
       backendParams.set("page", String(page));
       backendParams.set("limit", String(limit));
@@ -30,7 +22,7 @@ export async function GET(req: NextRequest) {
       `${getServerApiBase()}/api/categories?${backendParams.toString()}`,
       {
         cache: "no-store",
-      }
+      },
     );
 
     const data = await res.json().catch(() => null);
@@ -38,7 +30,7 @@ export async function GET(req: NextRequest) {
     if (!res.ok || data?.status === false) {
       return NextResponse.json(
         { message: data?.message ?? "Failed to fetch categories" },
-        { status: res.status }
+        { status: res.status },
       );
     }
 
@@ -56,17 +48,24 @@ export async function GET(req: NextRequest) {
             : [];
 
     let normalizedCategories = normalizeCategories(rawCategories);
-    let metadata = rawPayload?.metadata ?? {
-      currentPage: rawPayload?.page ?? 1,
-      limit: rawPayload?.limit ?? normalizedCategories.length,
-      totalPages: rawPayload?.totalPages ?? 1,
-      totalItems: rawPayload?.total ?? normalizedCategories.length,
+    // Backend metadata shape is { page, limit, total, totalPages } - map it
+    // onto the { currentPage, limit, totalPages, totalItems } shape the UI
+    // (PaginationWrapper, etc.) expects.
+    const rawMetadata = rawPayload?.metadata;
+    let metadata = {
+      currentPage: rawMetadata?.page ?? rawMetadata?.currentPage ?? 1,
+      limit: rawMetadata?.limit ?? normalizedCategories.length,
+      totalPages: rawMetadata?.totalPages ?? 1,
+      totalItems:
+        rawMetadata?.total ??
+        rawMetadata?.totalItems ??
+        normalizedCategories.length,
     };
 
     if (search) {
       const needle = search.toLowerCase();
       const filtered = normalizedCategories.filter((c) =>
-        c.name?.toLowerCase().includes(needle)
+        c.name?.toLowerCase().includes(needle),
       );
       const totalItems = filtered.length;
       const totalPages = Math.max(1, Math.ceil(totalItems / limit));
@@ -87,7 +86,7 @@ export async function GET(req: NextRequest) {
   } catch {
     return NextResponse.json(
       { message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

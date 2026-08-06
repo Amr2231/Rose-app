@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/carousel";
 import ProductCard from "@/components/shared/product-card";
 import { useTranslations } from "next-intl";
-import { normalizeProducts } from "@/lib/utils/normalize-product";
 
 type ProductItem = {
   _id: string;
@@ -39,16 +38,18 @@ export default function PersonalCartCarousel() {
   });
 
   // Fallback: when recommendations fail or are empty, use best-selling
+  // products. Goes through our own /api/products proxy route (not the
+  // external backend directly - a client-side fetch straight to the
+  // backend origin gets blocked by CORS), with the real sort params
+  // (`sortBy`/`sortOrder`, not the old backend's `sort=-sold`).
   const { data: fallbackData } = useQuery({
     queryKey: ["best-selling-products"],
     queryFn: async () => {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/api/products?sort=-sold&limit=6`
+        `/api/products?sortBy=bestSelling&sortOrder=desc&limit=6`,
       );
       if (!res.ok) throw new Error("Failed to fetch");
-      const json = await res.json();
-      const raw = json?.payload?.products ?? json?.payload ?? [];
-      return { products: normalizeProducts(raw) };
+      return res.json();
     },
     enabled: !isLoading && (isError || !data?.products?.length),
   });

@@ -24,7 +24,7 @@ export async function addWishlist(fields: { productId: string }) {
 
   if (!response.ok || (payload as any)?.status === false) {
     throw new Error(
-      (payload as any)?.message || "Failed to add product to wishlist"
+      (payload as any)?.message || "Failed to add product to wishlist",
     );
   }
 
@@ -34,22 +34,31 @@ export async function addWishlist(fields: { productId: string }) {
 }
 
 // Delete product from wishlist.
-export async function removeWishlist(productId: string) {
+// IMPORTANT: the path param here is the wishlist ENTRY's own id (the
+// `id` field on each item returned by GET /api/wishlist), not the
+// product's id - the backend replies "Wishlist item not found" if you
+// send a productId instead, since it looks the id up by primary key.
+// See checkWishlist() below, which resolves the entry id for a given
+// product before this is called.
+export async function removeWishlist(wishlistItemId: string) {
   const tokenObj = await getToken();
   const token = tokenObj?.accesstoken;
 
-  const response = await fetch(`${getServerApiBase()}/api/wishlist/${productId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
+  const response = await fetch(
+    `${getServerApiBase()}/api/wishlist/${wishlistItemId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
 
   const payload: ApiResponse = await response.json().catch(() => null);
 
   if (!response.ok || (payload as any)?.status === false) {
     throw new Error(
-      (payload as any)?.message || "Failed to remove product from wishlist"
+      (payload as any)?.message || "Failed to remove product from wishlist",
     );
   }
 
@@ -79,18 +88,23 @@ export async function getWishlist(): Promise<{
 
   const payload = await response.json();
 
-  // New backend envelope: { status, code, payload: <wishlist data> }.
-  // Keeping the older fallback shapes too in case the payload nests
-  // products the same way the old backend did.
-  const rawWishlist =
-    payload?.payload?.products ??
-    payload?.payload?.wishlist?.products ??
-    payload?.payload ??
-    payload?.wishlist?.products ??
-    payload?.data?.wishlist?.products ??
-    payload?.wishlist ??
-    payload?.products ??
-    [];
+  // New backend envelope: { status, code, payload: { wishlistItems: [...] } }.
+  // Each item is { id, userId, productId, createdAt, product: {...} } - the
+  // actual product data is nested under `.product`, not on the item itself
+  // (confirmed via a raw response dump - it's neither `.data` nor a flat
+  // product list like categories/occasions/products use).
+  const rawPayload = payload?.payload ?? payload;
+  const items = Array.isArray(rawPayload)
+    ? rawPayload
+    : Array.isArray(rawPayload?.wishlistItems)
+      ? rawPayload.wishlistItems
+      : Array.isArray(rawPayload?.data)
+        ? rawPayload.data
+        : Array.isArray(rawPayload?.products)
+          ? rawPayload.products
+          : [];
+
+  const rawWishlist = items.map((item: any) => item?.product ?? item);
 
   // Map new backend field names (id/cover/gallery/stock/...) onto what the
   // UI expects (_id/imgCover/images/quantity/...) - see normalize-product.ts.
@@ -98,20 +112,55 @@ export async function getWishlist(): Promise<{
   // undefined for every wishlist item (broken images, "/products/undefined"
   // links, missing React keys).
   const wishlist: Product[] = normalizeProducts(
-    Array.isArray(rawWishlist) ? rawWishlist : []
+    Array.isArray(rawWishlist) ? rawWishlist : [],
   );
 
   return { wishlist, message: payload?.message };
 }
 
-// check if product in wishlist, else.
+// check if product in wishlist, and resolve the wishlist entry's own id.
 // The new backend's Swagger doc has no "/wishlist/check/{productId}"
-// endpoint - only GET /api/wishlist (full list), POST, DELETE, DELETE/{id}.
-// Derived from getWishlist() instead of guessing a URL that would 404.
-export async function checkWishlist(productId: string) {
-  if (!productId) return false;
+// endpoint - only GET /api/wishlist (full list), POST, DELETE /{id}.
+// The entry id (returned here as wishlistItemId) is what DELETE /{id}
+// actually expects - see removeWishlist() above.
+export async function checkWishlist(
+  productId: string,
+): Promise<{ inWishlist: boolean; wishlistItemId: string | null }> {
+  if (!productId) return { inWishlist: false, wishlistItemId: null };
 
-  const { wishlist } = await getWishlist();
+  const tokenObj = await getToken();
+  const token = tokenObj?.accesstoken;
+  if (!token) return { inWishlist: false, wishlistItemId: null };
 
-  return wishlist.some((item: any) => item?.id === productId || item?._id === productId);
+  const response = await fetch(`${getServerApiBase()}/api/wishlist`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) return { inWishlist: false, wishlistItemId: null };
+
+  const payload = await response.json().catch(() => null);
+  const rawPayload = payload?.payload ?? payload;
+  const items = Array.isArray(rawPayload)
+    ? rawPayload
+    : Array.isArray(rawPayload?.wishlistItems)
+      ? rawPayload.wishlistItems
+      : Array.isArray(rawPayload?.data)
+        ? rawPayload.data
+        : Array.isArray(rawPayload?.products)
+          ? rawPayload.products
+          : [];
+
+  const match = items.find((item: any) => {
+    const itemProductId =
+      item?.productId ?? item?.product?.id ?? item?.product?._id;
+    return itemProductId === productId;
+  });
+
+  return {
+    inWishlist: Boolean(match),
+    wishlistItemId: match?.id ?? match?._id ?? null,
+  };
 }

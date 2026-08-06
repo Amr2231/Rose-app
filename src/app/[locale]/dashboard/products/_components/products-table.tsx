@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useRouter, usePathname } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { Plus, Search, Edit, Trash2, MoreVertical } from "lucide-react";
@@ -118,8 +118,23 @@ export default function ProductsTable() {
       params.delete("page");
       router.push(`${pathname}?${params.toString()}`);
     },
-    [pathname, router, searchParams]
+    [pathname, router, searchParams],
   );
+
+  // Debounce: search automatically 400ms after the user stops typing,
+  // instead of requiring Enter/blur.
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (searchInput === search) return;
+    debounceRef.current = setTimeout(() => {
+      handleSearch(searchInput);
+    }, 400);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchInput]);
 
   // Confirm delete
   function handleConfirmDelete() {
@@ -134,7 +149,9 @@ export default function ProductsTable() {
     <div className="flex flex-col gap-6 p-3 sm:p-6">
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
-        <h1 className="text-zinc-800 dark:text-zinc-100 font-semibold text-2xl">{t("title")}</h1>
+        <h1 className="text-zinc-800 dark:text-zinc-100 font-semibold text-2xl">
+          {t("title")}
+        </h1>
 
         <Button
           variant="default"
@@ -173,7 +190,9 @@ export default function ProductsTable() {
                 {tableHeaders.map((header, index) => (
                   <TableHead
                     key={index}
-                    className={cn(`${index === 0 ? "pl-5" : ""} text-black dark:text-zinc-50`)}
+                    className={cn(
+                      `${index === 0 ? "pl-5" : ""} text-black dark:text-zinc-50`,
+                    )}
                   >
                     {header}
                   </TableHead>
@@ -235,7 +254,7 @@ export default function ProductsTable() {
                         ? "text-red-600"
                         : isLowStock
                           ? "text-orange-500"
-                          : "text-zinc-600 dark:text-zinc-300"
+                          : "text-zinc-600 dark:text-zinc-300",
                     )}
                   >
                     {product.quantity.toLocaleString()}
@@ -252,8 +271,7 @@ export default function ProductsTable() {
                           router.push(`${pathname}/${product._id}/edit`)
                         }
                       >
-                        <Edit size={15} className="mr-2" />{" "}
-                        {t("actions.edit")}
+                        <Edit size={15} className="mr-2" /> {t("actions.edit")}
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() => setPendingDeleteId(product._id)}
@@ -278,7 +296,7 @@ export default function ProductsTable() {
                     <TableHead
                       key={index}
                       className={cn(
-                        `${index === 0 ? "pl-5" : ""} text-black dark:text-zinc-50`
+                        `${index === 0 ? "pl-5" : ""} text-black dark:text-zinc-50`,
                       )}
                     >
                       {header}
@@ -319,7 +337,7 @@ export default function ProductsTable() {
                             ? "text-red-600"
                             : isLowStock
                               ? "text-orange-500"
-                              : "text-gray-600 dark:text-zinc-300"
+                              : "text-gray-600 dark:text-zinc-300",
                         )}
                       >
                         {product.quantity.toLocaleString()}

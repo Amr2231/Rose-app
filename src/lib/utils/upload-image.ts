@@ -1,22 +1,6 @@
 import { getServerApiBase } from "./api-response";
 
-/**
- * NEW backend contract: images are NOT sent inline with a create/update
- * request. Instead:
- *   1. POST /api/upload (multipart, field name "image") -> stores the file
- *      in a temp cache (Redis) and returns { payload: { url } }.
- *   2. That `url` (e.g. "/api/upload/temp/<uuid>") is passed as the
- *      `image`/`photo`/`cover` string field in the actual create/update
- *      JSON request (categories, occasions, products, profile, etc).
- *   3. The temp file is deleted once used or after its TTL (~1 hour), so
- *      step 2 should happen right after step 1.
- *
- * This helper does step 1 and returns the URL to use in step 2.
- */
-export async function uploadImage(
-  file: File,
-  token?: string
-): Promise<string> {
+export async function uploadImage(file: File, token?: string): Promise<string> {
   const formData = new FormData();
   formData.append("image", file);
 
@@ -29,7 +13,19 @@ export async function uploadImage(
   const data = await res.json().catch(() => null);
 
   if (!res.ok || data?.status === false) {
-    throw new Error(data?.message ?? "Failed to upload image");
+    console.error("[uploadImage] failed", {
+      status: res.status,
+      statusText: res.statusText,
+      url: `${getServerApiBase()}/api/upload`,
+      hasToken: !!token,
+      body: data,
+    });
+
+    // Uploads are currently unreliable on the backend/proxy side (e.g. 413
+    // from the reverse proxy's body-size limit) - append a note so users
+    // aren't confused, until the backend team fixes it.
+    const baseMessage = data?.message ?? "Failed to upload image";
+    throw new Error(`${baseMessage} — the backend team will fix this soon.`);
   }
 
   const url: string | undefined = data?.payload?.url;

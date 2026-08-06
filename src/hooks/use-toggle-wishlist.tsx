@@ -44,8 +44,8 @@ export default function useToggleWishlist(productId: string) {
 
   const mutation = useMutation({
     mutationFn: async () => {
-      if (data) {
-        return removeWishlist(productId);
+      if (data?.inWishlist) {
+        return removeWishlist(data.wishlistItemId as string);
       } else {
         return addWishlist({ productId });
       }
@@ -53,7 +53,7 @@ export default function useToggleWishlist(productId: string) {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["wishlist", productId] });
-      if (data) {
+      if (data?.inWishlist) {
         toast({
           title: t("toast.success"),
           description: t("remove-from-wishlist"),

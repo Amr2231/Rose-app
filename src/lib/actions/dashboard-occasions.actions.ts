@@ -8,6 +8,7 @@ import {
 import { getToken } from "../utils/manage-token";
 import { getServerApiBase } from "../utils/api-response";
 import { uploadImage } from "../utils/upload-image";
+import { normalizeOccasion } from "../utils/normalize-occasion";
 
 // Delete Occasion Action
 export async function deleteOccasionAction(occasionId: string) {
@@ -70,7 +71,7 @@ export async function addOccasionAction(formData: FormData) {
 // NEW backend: PATCH /api/occasions/{id} body: { title?, description?, image? }
 export async function updateOccasionAction(
   occasionId: string,
-  formData: FormData
+  formData: FormData,
 ) {
   const tokenObj = await getToken();
   const token = tokenObj?.accesstoken;
@@ -110,7 +111,7 @@ export async function updateOccasionAction(
 ////////////////////
 
 export async function getOccasionById(
-  id: string
+  id: string,
 ): Promise<GetOccasionResponse> {
   const res = await fetch(`${getServerApiBase()}/api/occasions/${id}`, {
     cache: "no-store",
@@ -119,5 +120,12 @@ export async function getOccasionById(
   if (!res.ok) throw new Error("Failed to fetch occasion");
 
   const data = await res.json();
-  return (data.payload ?? data) as GetOccasionResponse;
+  const raw = data.payload ?? data;
+
+  // Backend returns { id, title, ... } - normalize to the { _id, name, ... }
+  // shape the dashboard components expect (see normalize-occasion.ts).
+  return {
+    ...raw,
+    occasion: normalizeOccasion(raw.occasion ?? raw),
+  } as GetOccasionResponse;
 }

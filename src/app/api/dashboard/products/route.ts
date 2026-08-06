@@ -25,17 +25,16 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   const { searchParams } = req.nextUrl;
   const page = searchParams.get("page") ?? "1";
   const limit = searchParams.get("limit") ?? "12";
+  const search = searchParams.get("search")?.trim();
 
   // Fetch products
-  // NOTE: the new backend's documented filters for GET /api/products are
-  // page, limit, categoryId, subCategoryId, occasionId, minPrice, maxPrice,
-  // minRating - there's no documented "search" param, and the new API is
-  // known to reject unrecognized query params on some deployments, so it's
-  // dropped here rather than forwarded blindly. If full-text search is
-  // needed, confirm with the backend team whether/how it's supported.
+  // Confirmed via Swagger: GET /api/products supports an optional `search`
+  // query param (substring match on title/description), so it's forwarded
+  // as-is now.
   const url = new URL(`${getServerApiBase()}/api/products`);
   url.searchParams.set("page", page);
   url.searchParams.set("limit", limit);
+  if (search) url.searchParams.set("search", search);
 
   const res = await fetch(url.toString(), {
     headers: { Authorization: `Bearer ${token.accesstoken}` },

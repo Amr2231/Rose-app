@@ -48,7 +48,6 @@ declare type PaymentMethodProps = {
   id: string;
 };
 
-
 declare type CheckoutPayload = {
   street: string;
   phone: string;
@@ -71,7 +70,7 @@ declare type ShippingAddressPayload = {
 // that doesn't exist anymore - addresses are now a separate saved resource,
 // referenced here by id, and card payments go through a dedicated
 // create-intent/confirm flow instead of a redirect.)
-declare type PaymentMethod = "CASH" | "CREDIT_CARD";
+declare type PaymentMethod = "CASH_ON_DELIVERY" | "CREDIT_CARD";
 
 declare type CreateOrderPayload = {
   addressId: string;

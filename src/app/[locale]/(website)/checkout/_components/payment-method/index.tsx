@@ -44,7 +44,8 @@ export default function PaymentMethod({
     // shipping-address step), not a raw street/phone/city/lat/long object.
     checkout({
       addressId: id,
-      paymentMethod: selectedMethod === "credit_card" ? "CREDIT_CARD" : "CASH",
+      paymentMethod:
+        selectedMethod === "credit_card" ? "CREDIT_CARD" : "CASH_ON_DELIVERY",
     });
   };
 

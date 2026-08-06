@@ -10,7 +10,7 @@ export async function GET(req: Request) {
 
     const res = await fetch(url, {
       method: "GET",
-      next: { revalidate: 3600 },
+      cache: "no-store",
     });
 
     const data = await res.json();
@@ -18,7 +18,7 @@ export async function GET(req: Request) {
     if (!res.ok || data?.status === false) {
       return NextResponse.json(
         { error: "Failed to fetch from external API" },
-        { status: res.status }
+        { status: res.status },
       );
     }
 
@@ -41,13 +41,6 @@ export async function GET(req: Request) {
         totalPages: rawPayload?.totalPages ?? 1,
         totalItems: rawPayload?.total ?? occasions.length,
       },
-      // Map the new backend's field names (id/title) onto what the UI
-      // expects (_id/name) - see normalize-occasion.ts. This route was
-      // returning the raw {id, title} shape, so every consumer reading
-      // occasion._id/occasion.name (the sidebar filter, the homepage
-      // tabs, etc.) got `undefined` for both - which meant filter clicks
-      // were pushing `?occasion=undefined` (the literal string) to the
-      // URL instead of a real id.
       occasions: normalizeOccasions(occasions),
     });
   } catch (error: unknown) {
