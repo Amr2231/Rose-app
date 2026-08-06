@@ -48,7 +48,6 @@ export function useUpdateCategory() {
         variant: "destructive",
       });
 
-      console.error("Update category error:", error);
     },
   });
 }

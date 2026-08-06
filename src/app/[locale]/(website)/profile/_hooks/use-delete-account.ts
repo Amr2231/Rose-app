@@ -15,7 +15,6 @@ export function useDeleteAccount() {
       });
     },
     onError: (err) => {
-      console.error(err);
       toast({
         title: t("account-delete-failed"),
         variant: "destructive",

@@ -26,7 +26,6 @@ export function useAddToCart() {
       });
     },
     onError: (err) => {
-      console.error(err);
       if (err instanceof Error && err.message === "UNAUTHENTICATED") {
         toast({
           title: "Please log in to add products to your cart",

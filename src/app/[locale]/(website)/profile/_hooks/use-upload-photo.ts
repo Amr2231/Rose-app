@@ -15,7 +15,6 @@ export function useUploadPhoto() {
       });
     },
     onError: (err) => {
-      console.error(err);
       toast({
         title: "Failed to upload your photo",
         variant: "destructive",

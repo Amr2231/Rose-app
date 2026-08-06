@@ -13,14 +13,6 @@ export async function uploadImage(file: File, token?: string): Promise<string> {
   const data = await res.json().catch(() => null);
 
   if (!res.ok || data?.status === false) {
-    console.error("[uploadImage] failed", {
-      status: res.status,
-      statusText: res.statusText,
-      url: `${getServerApiBase()}/api/upload`,
-      hasToken: !!token,
-      body: data,
-    });
-
     // Uploads are currently unreliable on the backend/proxy side (e.g. 413
     // from the reverse proxy's body-size limit) - append a note so users
     // aren't confused, until the backend team fixes it.

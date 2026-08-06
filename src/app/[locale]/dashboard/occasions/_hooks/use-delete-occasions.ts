@@ -19,7 +19,7 @@ export function useDeleteOccasions() {
       // refetch the list of occasions after one has been removed
       queryClient.invalidateQueries({ queryKey: ["occasions"] });
     },
-    onError: (err) => console.log(err),
+    onError: (err) =>{},
   });
 
   return { mutate, isPending };

@@ -38,7 +38,6 @@ export async function updateCategoryAction(id: string, title: string) {
       document: data.payload ?? data.document ?? data,
     };
   } catch (err: any) {
-    console.error(err);
     return { success: false, message: err?.message || "Something went wrong" };
   }
 }

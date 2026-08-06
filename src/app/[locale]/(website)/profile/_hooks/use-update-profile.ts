@@ -19,7 +19,6 @@ export function useUpdateProfile() {
       });
     },
     onError: (err) => {
-      console.error(err);
       toast({
         title: t("profile-update-failed"),
         variant: "destructive",

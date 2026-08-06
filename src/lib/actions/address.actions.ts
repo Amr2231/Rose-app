@@ -116,7 +116,6 @@ export async function getAddressesAction() {
 
     return addresses;
   } catch (error) {
-    console.error("Failed to fetch addresses:", error);
     return [];
   }
 }
@@ -136,7 +135,6 @@ export async function addAddressAction(data: any) {
 
     return { success: true };
   } catch (error) {
-    console.error("Add address failed:", error);
     throw error;
   }
 }
@@ -153,7 +151,6 @@ export async function updateAddressAction(id: string, data: any) {
 
     return { success: true };
   } catch (error) {
-    console.error("Update address failed:", error);
     throw error;
   }
 }
@@ -169,7 +166,6 @@ export async function deleteAddressAction(id: string) {
 
     return { success: true };
   } catch (error) {
-    console.error("Delete address failed:", error);
     throw error;
   }
 }

@@ -1,16 +1,8 @@
 import { loginValues } from "@/lib/schemas/auth.schema";
 import { useMutation } from "@tanstack/react-query";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 
 export default function useLogin() {
-  // signIn() already syncs the client-side session, but the follow-up
-  // session-mode request below rewrites the cookie again afterwards - so
-  // components reading useSession() (e.g. the header) could still show the
-  // pre-login state until something (a manual refresh) triggers a refetch.
-  // Explicitly calling update() after both requests finish forces an
-  // immediate resync instead of waiting on that.
-  const { update } = useSession();
-
   // Mutations
   return useMutation({
     mutationFn: async (values: loginValues) => {
@@ -34,7 +26,13 @@ export default function useLogin() {
         console.error("Failed to apply session-mode:", err);
       }
 
-      await update();
+      // IMPORTANT: use getSession(), not useSession().update(). update()
+      // silently no-ops when there's no existing client-side session yet
+      // (going from logged-out to logged-in right here) - it's meant to
+      // refresh an *existing* session, not fetch one for the first time.
+      // getSession() does a real fetch and broadcasts the result to every
+      // useSession() consumer regardless of prior state.
+      await getSession();
 
       return payload;
     },

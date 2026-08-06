@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { Heart, LayoutDashboard, MapPinPen, ShoppingCart, User } from "lucide-react";
+import {
+  Heart,
+  LayoutDashboard,
+  MapPinPen,
+  ShoppingCart,
+  User,
+} from "lucide-react";
 import Navbar from "./navbar";
 import { cn } from "@/lib/utils/tailwind-merge";
 import Notifications from "@/components/skeletons/notifications/notifications";
@@ -122,7 +128,13 @@ export default function Header() {
     <>
       <header className="px-3 sm:px-5 flex flex-wrap items-center justify-between gap-y-2 py-2 text-sm">
         <div className="logo me-2 shrink-0">
-          <Image src="/images/logo1.svg" alt="Rose Logo" width={85} height={80} className="w-16 h-auto sm:w-[85px]" />
+          <Image
+            src="/images/logo1.svg"
+            alt="Rose Logo"
+            width={85}
+            height={80}
+            className="w-16 h-auto sm:w-[85px]"
+          />
         </div>
 
         {/* Delivery Location Trigger */}
@@ -150,7 +162,8 @@ export default function Header() {
                 key={index}
                 className={cn(
                   "flex items-center gap-1 px-2 sm:px-3 cursor-pointer",
-                  item.isCartGroup && "border-x h-12 relative dark:border-x-zinc-700"
+                  item.isCartGroup &&
+                    "border-x h-12 relative dark:border-x-zinc-700",
                 )}
               >
                 {item.isAccountItem && !isLoggedIn ? (

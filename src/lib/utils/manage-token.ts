@@ -17,8 +17,6 @@ export async function getToken() {
 
     return jwt;
   } catch (error) {
-    console.error("Error decoding token", error);
-
     return null;
   }
 }

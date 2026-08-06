@@ -28,7 +28,6 @@ export async function getRelatedProducts(productId: string) {
   } catch (error) {
     // Fail soft - a broken related-products fetch shouldn't take down the
     // whole product page.
-    console.error("Failed to load related products:", error);
     return { similarProducts: [] };
   }
 }

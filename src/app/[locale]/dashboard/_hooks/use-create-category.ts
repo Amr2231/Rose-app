@@ -40,7 +40,6 @@ export function useCreateCategory() {
           error?.message || "Failed to add category. Please try again.",
         variant: "destructive",
       });
-      console.error("Create category error:", error);
     },
   });
 }

@@ -66,7 +66,6 @@ export default function CartData() {
       await deleteCart();
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     } catch (err) {
-      console.error("Failed to clear cart:", err);
     }
   };
 
@@ -79,7 +78,6 @@ export default function CartData() {
       await updateCartQuantity(productId, newQuantity);
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     } catch (err) {
-      console.error("Failed to update quantity:", err);
     }
   };
 
@@ -89,7 +87,6 @@ export default function CartData() {
       await deleteProduct(productId);
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     } catch (err) {
-      console.error("Failed to delete product:", err);
     }
   };
 

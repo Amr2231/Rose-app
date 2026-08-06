@@ -18,7 +18,6 @@ export async function syncLocalWishlistToAPI() {
     try {
       await addWishlist({ productId });
     } catch (err) {
-      console.error("Failed to sync product:", productId, err);
     }
   }
 

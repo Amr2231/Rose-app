@@ -29,7 +29,6 @@ export default function SyncGuestCart() {
         localStorage.removeItem("guest-cart");
         queryClient.invalidateQueries({ queryKey: ["cart"] });
       } catch (err) {
-        console.error("Error syncing guest cart:", err);
       }
     })();
   }, [status, queryClient]);

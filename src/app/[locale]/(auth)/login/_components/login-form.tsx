@@ -16,12 +16,11 @@ import { PasswordInput } from "@/components/ui/password-input";
 import { LoginSchema, loginValues } from "@/lib/schemas/auth.schema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
 import useLogin from "../_hooks/use-login";
 import { Loader } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { getFriendlyErrorMessage } from "@/lib/utils/auth";
-import { Link } from "@/i18n/navigation";
 
 export default function LoginForm() {
   // translation
@@ -54,15 +53,13 @@ export default function LoginForm() {
 
   // Mutations
   const { isPending, mutate: login, isError, error } = useLogin();
-  const router = useRouter();
 
   const errorMessage = getFriendlyErrorMessage(error?.message || "", t);
 
   const onsubmit: SubmitHandler<loginValues> = async (values) => {
     login(values, {
       onSuccess: () => {
-        router.replace("/");
-        router.refresh();
+        window.location.href = `/${locale}`;
       },
     });
   };

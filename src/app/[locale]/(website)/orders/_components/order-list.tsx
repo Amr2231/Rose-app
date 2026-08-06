@@ -11,7 +11,6 @@ export default async function OrderList() {
     // e.g. Admin accounts hitting the customer-only /api/orders endpoint -
     // don't crash the whole page (which was bubbling up to the global
     // error boundary), just show the empty state instead.
-    console.error("Failed to load orders:", error);
     return <EmptyOrders />;
   }
 

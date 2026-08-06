@@ -59,7 +59,6 @@ export default function SearchModule() {
       setProducts(data?.recommendations || []);
       setHasMore(false);
     } catch (err) {
-      console.error(err);
       setProducts([]);
     } finally {
       setLoading(false);
@@ -90,7 +89,6 @@ export default function SearchModule() {
       );
       if (!isNewSearch) setPage((p) => p + 1);
     } catch (err) {
-      console.error(err);
       setHasMore(false);
     }
   };
